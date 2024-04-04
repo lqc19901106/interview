@@ -237,3 +237,11 @@ user-scalable ：是否允许用户缩放(yes/no）
    
 鲜见的有：area、base、col、colgroup、command、embed、keygen、param、source、track、wbr。
 ```
+
+8. link和@import的区别：
+```
+link是html标签，@import是CSS提供的
+link的资源在页面加载时同步加载，@import是在页面完全加载后再加载的css文件
+link没有兼容问题，@import不支持ie5以下
+link是DOM元素，可以通过JavaScript动态引入样式表改变动态，@import不可以
+```
