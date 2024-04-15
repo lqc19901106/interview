@@ -68,9 +68,10 @@
     import和export命令以及export和export default的区别
 ```
 
-1. [ES6] var、let和const的区别
+<b><details><summary>1. var、let和const的区别? </summary></b>
+参考答案：
 
-      - 变量提升：暂时性死区
+    - 变量提升：暂时性死区
         - var 存在变量提升 可以在声明前调用 值为undefined
         - let const 不存在变量提升 所声明的变量都要在声明后使用
         ```
@@ -86,25 +87,30 @@
         console.log(c)  // Cannot access 'c' before initialization
         const c = 10
         ```
-      - 重复声明
-        - var 可以重复声明不会报错
-        - let、const重复声明会报错
-      - 块级作用域
-        - var 没有
-        - let、const 存在块级作用域
-      - 修改变量
-        - var、let可以修改变量
-        - const 声明之后不能修改，const不能声明为null的变量、引用类型的属性值可以修改
+  - 重复声明
+    - var 可以重复声明不会报错
+    - let、const重复声明会报错
+  - 块级作用域
+    - var 没有
+    - let、const 存在块级作用域
+  - 修改变量
+    - var、let可以修改变量
+    - const 声明之后不能修改，const不能声明为null的变量、引用类型的属性值可以修改
+</details>
 
-2. [ES6] 箭头函数和普通函数的区别
-   - 1、函数体内的 this 对象，就是定义时所在的对象，而不是使用时所在的对象。
-   - 2、不可以使用 arguments 对象，该对象在函数体内不存在。如果要用，可以用 rest 参数代替。
-   - 3、不可以使用 yield 命令，因此箭头函数不能用作 Generator 函数。
-   - 4、不可以使用 new 命令，因为：
-       没有自己的 this，无法调用 call，apply。
-       没有 prototype 属性 ，而 new 命令在执行时需要将构造函数的 prototype 赋值给新的对象的 __proto__
-3. [ES6] Map、Set、WeakMap、WeakSet的使用区别
+<b><details><summary>2. 箭头函数和普通函数的区别 </summary></b>
+参考：
+- 1、函数体内的 this 对象，就是定义时所在的对象，而不是使用时所在的对象。
+- 2、不可以使用 arguments 对象，该对象在函数体内不存在。如果要用，可以用 rest 参数代替。
+- 3、不可以使用 yield 命令，因此箭头函数不能用作 Generator 函数。
+- 4、不可以使用 new 命令，因为：
+   没有自己的 this，无法调用 call，apply。
+   没有 prototype 属性 ，而 new 命令在执行时需要将构造函数的 prototype 赋值给新的对象的 __proto__
+</details>
+
+<b><details><summary>3. [ES6] Map、Set、WeakMap、WeakSet的使用区别</summary></b>
 ```
-
-
+Map
+Set
 ```
+</details>
