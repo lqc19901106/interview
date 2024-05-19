@@ -1,10 +1,12 @@
 ## this 指向问题
+
 > - this 在全局中指向 `window`, node 环境指向 `global`
 > - 构造函数中的this指向实例化对象
 > - 构造函数的静态方法中的this，指向构造函数
 > - 普通函数中this，指向调用者
 > - 事件处理中的this，指向事件源
 > - 箭头函数中没有this值，默认捕获外层上下文的this。
+
 ```
 console.log(this)  // window
 
@@ -44,6 +46,7 @@ obj.test()(); // true
 ```
 
 <b><details><summary>1. 面试题 -</summary></b>
+
 ```
    var name = "window";
    var person = {
@@ -61,9 +64,11 @@ obj.test()(); // true
    }
    sayName();
 ```
+
 </details>
 
 <b><details><summary>2. 面试题二</summary></b>
+
 ```
 var name = "window";
 var person1 = {
@@ -95,9 +100,11 @@ var person2 = { name: "person2" };
 // person1.foo4.call(person2)(); // person2(上层作用域被显示的绑定了一个person2)
 // person1.foo4().call(person2); // person1(上层找到person1)person1.foo4()使上层作用域变成person1，又因为箭头函数没有this，不绑定call，而是从上层作用域中
 ```
+
 </details>
 
 <b><details><summary>3. 面试题三</summary></b>
+
 ```
 var name = "window";
 function Person(name) {
@@ -135,9 +142,11 @@ var obj = {
   foo: function () {},
 };
 ```
+
 </details>
 
 <b><details><summary>4. 面试题四</summary></b>
+
 ```
 'var name = "window";
 function Person(name) {
@@ -178,9 +187,11 @@ person1.obj.foo2().call(person2); // obj 上层作用域是foo2通过隐式绑�
 //   }
 // }
 ```
+
 </details>
 
 <b><details><summary>5. 手写bind</summary></b>
+
 ```
 Function.prototype.myBind = function (context, ...args) {
    const _this = this;
@@ -198,9 +209,11 @@ Function.prototype.myBind = function (context, ...args) {
    };
 }
 ```
+
 </details>
 
 <b><details><summary>6. 手写call</summary></b>
+
 ```
 Function.prototype.myCall = function (context, ...args) {
    let result = null;
@@ -214,9 +227,11 @@ function a (a, b) {
 }
 a._call({}, 1, 2, 3);
 ```
+
 </details>
 
 <b><details><summary>7. 手写apply</summary></b>
+
 ```
 Function.prototype.myApply = function (context, args = []) {
    let result = null;
@@ -232,4 +247,5 @@ function a (a, b) {
 
 a._call({}, 1, 2, 3);
 ```
+
 </details>

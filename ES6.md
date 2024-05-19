@@ -1,5 +1,6 @@
 > https://es6.ruanyifeng.com/
-``` ES6 更新内容
+
+```ES6
 1. ES6引入来严格模式
     变量必须声明后在使用
     函数的参数不能有同名属性, 否则报错
@@ -68,7 +69,8 @@
     import和export命令以及export和export default的区别
 ```
 
-<b><details><summary>1. var、let和const的区别? </summary></b>
+#### 面试题 1. var、let和const的区别?
+
 参考答案：
 
     - 变量提升：暂时性死区
@@ -78,39 +80,78 @@
         // var
         console.log(a)  // undefined
         var a = 10
-
+    
         // let 
         console.log(b)  // Cannot access 'b' before initialization
         let b = 10
-
+    
         // const
         console.log(c)  // Cannot access 'c' before initialization
         const c = 10
         ```
-  - 重复声明
-    - var 可以重复声明不会报错
-    - let、const重复声明会报错
-  - 块级作用域
-    - var 没有
-    - let、const 存在块级作用域
-  - 修改变量
-    - var、let可以修改变量
-    - const 声明之后不能修改，const不能声明为null的变量、引用类型的属性值可以修改
-</details>
 
-<b><details><summary>2. 箭头函数和普通函数的区别 </summary></b>
+- 重复声明
+  - var 可以重复声明不会报错
+  - let、const重复声明会报错
+- 块级作用域
+  - var 没有
+  - let、const 存在块级作用域
+- 修改变量
+  - var、let可以修改变量
+  - const 声明之后不能修改，const不能声明为null的变量、引用类型的属性值可以修改
+    
+    </details>
+
+#### 面试题 2. 箭头函数和普通函数的区别
+
 参考：
+
 - 1、函数体内的 this 对象，就是定义时所在的对象，而不是使用时所在的对象。
 - 2、不可以使用 arguments 对象，该对象在函数体内不存在。如果要用，可以用 rest 参数代替。
 - 3、不可以使用 yield 命令，因此箭头函数不能用作 Generator 函数。
 - 4、不可以使用 new 命令，因为：
    没有自己的 this，无法调用 call，apply。
    没有 prototype 属性 ，而 new 命令在执行时需要将构造函数的 prototype 赋值给新的对象的 __proto__
-</details>
+  
+  </details>
 
-<b><details><summary>3. [ES6] Map、Set、WeakMap、WeakSet的使用区别</summary></b>
+#### 面试题 3. [ES6] Map、Set、WeakMap、WeakSet的使用区别
+
 ```
-Map
-Set
+> https://www.cnblogs.com/jaetyn/p/16410225.html
+### Map和WeakMap
+- 键类型的限制：
+
+Map： 键可以是任意类型的值，包括基本类型和对象引用。
+WeakMap： 键只能是对象引用。这是因为WeakMap的键是弱引用，不会阻止对象被垃圾回收，这使得WeakMap适合用于存储对象之间的关联信息。
+垃圾回收机制：
+
+Map： 如果某个键不再被引用，但它仍然会被Map引用，因此不会自动被垃圾回收。
+WeakMap： 如果某个键不再被引用，它会被自动从WeakMap中删除，这有助于避免内存泄漏。
+
+- 迭代能力：
+
+Map： 可以使用Map.prototype.keys()、Map.prototype.values()和Map.prototype.entries()等方法来迭代Map中的键、值或键值对。
+WeakMap： 由于其键是弱引用，不可直接迭代键或值，因此WeakMap对象是不可枚举的，无法获取大小。
+
+- 功能差异：
+Map： 提供了更多的功能，例如可以获取Map的大小（使用Map.prototype.size属性），可以通过键获取值（使用Map.prototype.get()方法），可以遍历Map中的键值对等。
+
+Set和WeakSet
+Set 和 WeakSet 的区别主要体现在以下几个方面：
+
+- 成员类型：
+
+Set 可以包含任何类型的值，包括基本类型和对象。
+WeakSet 只能包含对象，且成员必须是弱引用。
+-弱引用特性：
+
+WeakSet 中的对象是弱引用的，这意味着如果没有其他强引用指向这些对象，它们将被垃圾回收机制回收。这有助于防止内存泄漏，尤其是当存储的对象是DOM节点或其他可能在页面卸载时不再需要的资源时。
+不可遍历和没有size属性：
+
+WeakSet 不支持使用for...of循环进行遍历，也没有size属性来获取集合中成员的数量。这是因为其成员是弱引用，状态可能随时变化，因此无法保证遍历结果的准确性。
+- 使用场景：
+
+由于WeakSet的弱引用特性和不可遍历的特性，它非常适合用于存储不需要强制保持活动状态的对象，如DOM节点，同时避免内存泄漏的风险。
+总结来说，Set和WeakSet的主要区别在于成员的类型、弱引用处理以及是否可遍历等方面。WeakSet设计用于存储不需要强制保持活动状态的对象，有助于管理内存使用，避免不必要的内存消耗。
 ```
-</details>

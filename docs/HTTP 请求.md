@@ -1,4 +1,5 @@
 ### 1. 请求状态码
+
 - 1XX：消息状态码。
   - 100：Continue 继续。客户端应继续其请求。
   - 101：Switching Protocols 切换协议。服务器根据客户端的请求切换协议。只能切换到更高级的协议，例如，切换到 HTTP 的新版本协议。
@@ -30,6 +31,7 @@
   - 505：HTTP Version not supported 服务器不支持请求的HTTP协议的版本，无法完成处理。
 
 ### 2. 请求方法
+
 1. GET: 向服务器获取数据；
 2. POST：将实体提交到指定的资源，通常会造成服务器资源的修改；
 3. PUT：上传文件，更新数据；
@@ -40,6 +42,7 @@
 8. TRACE: 回显服务器收到的请求，主要⽤于测试或诊断。
 
 ### 3. HTTP请求头和响应头
+
 *HTTP Request Header 常见的请求头：*
 
 Accept:浏览器能够处理的内容类型
@@ -60,7 +63,6 @@ Referer：发出请求的页面的URL
 
 User-Agent：浏览器的用户代理字符串
 
-
 *HTTP Responses Header 常见的响应头：*
 
 Date：表示消息发送的时间，时间的描述格式由rfc822定义
@@ -73,8 +75,8 @@ Cache-Control：控制HTTP缓存
 
 Content-type:表示后面的文档属于什么MIME类型
 
+#### 1. GET和POST的请求的区别
 
-<b><details><summary>1. GET和POST的请求的区别</summary></b>
 Post 和 Get 是 HTTP 请求的两种方法，其区别如下：
 
 应用场景： GET 请求是一个幂等的请求，一般 Get 请求用于对服务器资源不会产生影响的场景，比如说请求一个网页的资源。而 Post 不是一个幂等的请求，一般用于对服务器资源会产生影响的情景，比如注册用户这一类的操作。
@@ -87,27 +89,33 @@ Post 和 Get 是 HTTP 请求的两种方法，其区别如下：
 
 请求长度： 浏览器由于对 url 长度的限制，所以会影响 get 请求发送数据时的长度。这个限制是浏览器规定的，并不是 RFC 规定的。
 参数类型： post 的参数传递支持更多的数据类型。
-</details>
 
-<b><details><summary>2. POST和PUT请求的区别</summary></b>
-PUT请求是向服务器端发送数据，从而修改数据的内容，但是不会增加数据的种类等，也就是说无论进行多少次PUT操作，其结果并没有不同。（可以理解为时更新数据）
-POST请求是向服务器端发送数据，该请求会改变数据的种类等资源，它会创建新的内容。（可以理解为是创建数据）
-</details>
+#### 2. POST和PUT请求的区别
 
-<b><details><summary>3. 常见的 Content-Type 属性值</summary></b>
+- 301：Moved Permanently 永久移动。请求的资源已被永久的移动到新 URI，返回信息会包括新的 URI，浏览器会自动定向到新 URI。今后任何新的请求都应使用新的 URI 代替。
+- 302：Found 临时移动，与 301 类似。但资源只是临时被移动。客户端应继续使用原有URI。
+- 304：Not Modified    未修改。所请求的资源未修改，服务器返回此状态码时，不会返回任何资源。客户端通常会缓存访问过的资源，通过提供一个头信息指出客户端希望只返回在指定日期之后修改的资源。
+
+#### 3. 常见的 Content-Type 属性值
+
 - application/x-www-form-urlencoded：浏览器的原生 form 表单，如果不设置 enctype 属性，那么最终就会以 application/x-www-form-urlencoded 方式提交数据。该种方式提交的数据放在 body 里面，数据按照 key1=val1&key2=val2 的方式进行编码，key 和 val 都进行了 URL转码。
-- multipart/form-data：该种方式也是一个常见的 POST 提交方式，通常表单上传文件时使用该种方式。
-- application/json：服务器消息主体是序列化后的 JSON 字符串。
-- text/xml：该种方式主要用来提交 XML 格式的数据。
-</details>
 
-<b><details><summary>4. 301、302、307的区别</summary></b>
+- multipart/form-data：该种方式也是一个常见的 POST 提交方式，通常表单上传文件时使用该种方式。
+
+- application/json：服务器消息主体是序列化后的 JSON 字符串。
+
+- text/xml：该种方式主要用来提交 XML 格式的数据。
+  
+  </details>
+
+#### 4. 301、302、304、307的区别
+
 PUT请求是向服务器端发送数据，从而修改数据的内容，但是不会增加数据的种类等，也就是说无论进行多少次PUT操作，其结果并没有不同。（可以理解为时更新数据）
 POST请求是向服务器端发送数据，该请求会改变数据的种类等资源，它会创建新的内容。（可以理解为是创建数据）
-</details>
 
-<b><details><summary>5. 手写实现 ajax请求</summary></b>
-```js
+#### 5. 手写实现 ajax请求
+
+```javascript
 function objToString(params) {
     if(!params) {
         return '';
@@ -125,7 +133,7 @@ function ajax(options){
         }else{
             xhr = new ActiveObject("Microsoft.XMLHttp")
         }
-        
+
         if(options.methods === "GET") {
             xhr.open(options.methods, url, true);
             xhr.send();
@@ -164,5 +172,3 @@ function ajax(options){
     });
 }
 ```
-</details>
-

@@ -1,18 +1,23 @@
 > https://cloud.tencent.com/developer/article/1953193
+
 ### 1. 浏览器同源策略
+
   同源策略判断依据： 协议、域名、端口相同
 
 > 为什么要有同源策略？
->
+
   同源策略是一个重要的安全策略，它用于限制一个origin的文档或者它加载的脚本如何能与另一个源的资源进行交互。它能帮助阻隔恶意文档，减少可能被攻击的媒介。
 
 ### 2. 解决跨域方法
+
 #### 2.1 JSONP跨域
+
     原理： 利用 script标签色src属性，可以跨域请求内容
     优缺点：
         缺点： 只能进行get请求
         优点： 兼容性强，可以向下兼容比较古老的浏览器
     实现
+
 ```html
 <script type='text/javascript'>
     window.jsonpCallback = function (res) {
@@ -55,17 +60,19 @@
     })
 </script>
 ```
+
 #### 2.2 CORS 跨域
+
     CORS （Cross-Origin Resource Sharing，跨域资源共享）是一个系统，它由一系列传输的HTTP头组成，这些HTTP头决定浏览器是否阻止前端 JavaScript 代码获取跨域请求的响应。
-
+    
     同源安全策略 默认阻止“跨域”获取资源。但是 CORS 给了web服务器这样的权限，即服务器可以选择，允许跨域请求访问到它们的资源。
-
+    
     *请求头*
     Access-Control-Request-Headers
     用于发起一个预请求，告知服务器正式请求会使用那些 HTTP 头。
     Access-Control-Request-Method
     用于发起一个预请求，告知服务器正式请求会使用哪一种 HTTP 请求方法。
-
+    
     *响应头*
     Access-Control-Allow-Origin
     指示请求的资源能共享给哪些域。
@@ -99,7 +106,9 @@ curl 'https://otheve.beacon.qq.com/analytics/v2_upload?appkey=0WEB0OEX9Y4SQ244' 
   -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 Edg/124.0.0.0' \
   --data-raw '{"appVersion":"","sdkId":"js","sdkVersion":"4.5.20-web","mainAppKey":"0WEB0OEX9Y4SQ244","platformId":3,"common":{"atversion":"4.1.15","uid":"","fromsource":"qcloud.bing.seo","from":"","from_column":"","islogined":"false","pagetag":"通用技术-服务器技术-http,通用技术-数据库开发-access,通用技术-编程语言-php,通用技术-开发技术-运维,通用技术-网络技术-https","trafficparams":"***$;timestamp%3D1714183033972;from_type%3Dserver;track%3Db25d4fa6-7e49-4ab5-b89d-fdb8809d4458;$***","owneruin":"","qclouduid":"Csv_O-OD9l-M","articleSource":"B","magicSource":"N","authorType":"Z","subjectTime":"2022-03-09 11:28:49","productSlug":"tke,crg","system":"Mac OS(10.15.7)-Blink","browser":"Edge(124.0.0.0)","spider":"","seoKeywords":"通用技术-服务器技术-http,通用技术-数据库开发-access,通用技术-编程语言-php,通用技术-开发技术-运维,通用技术-网络技术-https","A2":"f3NKee1bGyr6Tn089tP9WtcZd4j12aWS","A8":"","A12":"zh-CN","A17":"1792*1120*2","A23":"","A50":"","A76":"0WEB0OEX9Y4SQ244_1714183032935","A101":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 Edg/124.0.0.0","A102":"https://cloud.tencent.com/developer/article/1953193","A104":"https://cn.bing.com/","A119":"","A153":""},"events":[{"eventCode":"qcdeveloper_pageStay","eventTime":"1714184436398","mapValue":{"viewportWidth":"952","viewportHeight":"953","url":"https://cloud.tencent.com/developer/article/1953193","pathname":"/developer/article/1953193","query":"","hostname":"cloud.tencent.com","pagefrom":"cn.bing.com$$/$$","urlfrom":"https://cn.bing.com/","title":"别在问我跨域问题了，跨域详解以及前端、后端、运维解决的方法统统写在这里了。-腾讯云开发者社区-腾讯云","duration":"315746","pvId":"gSo8aFZFpyl63wqgMed02","$url_path":"/developer/article/1953193","$referrer":"https://cn.bing.com/","A99":"N","A100":"252","A72":"4.5.20-web","A88":"1714183032935"}}]}'
 ```
+
 #### 2.3 通过代理解决
+
 ```
 // nginx  配置
 location /api {
